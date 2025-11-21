@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us — Acme Corp</title>
+  <link rel="stylesheet" href="contact.css">
+  
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Acme Corp</h1>
+      <p class="lead">Questions or feedback? We’d love to hear from you.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <div class="grid">
+        <!-- Form column -->
+        <section aria-labelledby="contact-heading">
+          <h2 id="contact-heading">Contact Us</h2>
+
+          <form id="contactForm" novalidate>
+            <div style="margin-top:12px;">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" required aria-required="true" />
+            </div>
+
+            <div style="margin-top:12px;">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+            </div>
+
+            <div style="margin-top:12px;">
+              <label for="reason">Reason</label>
+              <select id="reason" name="reason">
+                <option value="general">General question</option>
+                <option value="support">Support request</option>
+                <option value="sales">Sales inquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div style="margin-top:12px;">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Write your message here…" required aria-required="true"></textarea>
+            </div>
+
+            <div class="controls">
+              <button type="submit" class="primary">Send message</button>
+              <button type="reset">Reset</button>
+              <div class="note">We aim to respond within 2 business days.</div>
+            </div>
+
+            <div id="success" class="success" role="status" aria-live="polite">
+              ✅ Your message is sent.
+            </div>
+          </form>
+        </section>
+
+        <!-- Contact info / quick links column -->
+        <aside class="contact-info" aria-label="Contact information">
+          <h3 style="margin-top:0">Quick contact</h3>
+          <div class="meta">Prefer email? Use:</div>
+          <div class="info-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13A2.5 2.5 0 0 0 21 15.5v-7A2.5 2.5 0 0 0 18.5 6h-13A2.5 2.5 0 0 0 3 8.5z" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 8l-9 6-9-6" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><a href="gitproject@nmit.ac.in">gitproject@nmit.ac.in</a></div>
+          </div>
+
+          <div style="margin-top:8px;" class="meta">Office</div>
+          <div class="info-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 10v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10V7a5 5 0 0 1 10 0v3" stroke="#9CA3AF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><div>Acme HQ</div><div class="meta">Bengaluru</div></div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <h4 style="margin:0 0 6px 0">Team members</h4>
+            <table style="border-collapse:collapse; width:100%; font-size:13px;">
+              <tbody>
+                <tr><td style="padding:6px 8px; border:1px solid var(--border)">Asha N Bhat</td><td style="padding:6px 8px; border:1px solid var(--border)">1NT24IS046</td></tr>
+                <tr><td style="padding:6px 8px; border:1px solid var(--border)">Manya Shetty</td><td style="padding:6px 8px; border:1px solid var(--border)">1NT24IS124</td></tr>
+                <tr><td style="padding:6px 8px; border:1px solid var(--border)">Sheetal Salunke</td><td style="padding:6px 8px; border:1px solid var(--border)">1NT24IS201</td></tr>
+                <tr><td style="padding:6px 8px; border:1px solid var(--border)">Spandana H S</td><td style="padding:6px 8px; border:1px solid var(--border)">1NT24IS223</td></tr>
+                <tr><td style="padding:6px 8px; border:1px solid var(--border)">Shivam</td><td style="padding:6px 8px; border:1px solid var(--border)">1NT24IS204</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <nav style="margin-top:12px;">
+            <a href="index.html">← Back to Home</a>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Lightweight demo-only handling: prevent real submit, show success message
+    (function(){
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('success');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // simple client-side validation highlight
+        const required = [...form.querySelectorAll('[required]')];
+        let ok = true;
+        required.forEach(el => {
+          if (!el.value.trim()) {
+            el.style.outline = "2px solid #fca5a5";
+            ok = false;
+            setTimeout(()=> el.style.outline = "", 1500);
+          }
+        });
+        if (!ok) return;
+
+        // show demo success
+        success.style.display = 'block';
+        // optionally clear form fields to simulate "sent"
+        setTimeout(() => {
+          form.reset();
+        }, 10000000000000);
+      });
+
+      // Reset hides success message
+      form.addEventListener('reset', () => {
+        success.style.display = 'none';
+      });
+    })();
+  </script>
+</body>
+</html>
